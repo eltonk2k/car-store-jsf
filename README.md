@@ -3,7 +3,7 @@
 `Link` https://github.com/professor-enoqueleal/car-store-guide
 
 
-## Bando de dados H2
+## Banco de dados H2
 URL do `console de gerênciamento:` http://localhost:8080/h2-console
 
  Driver Class:  `org.h2.Driver` \
