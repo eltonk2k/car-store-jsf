@@ -57,9 +57,11 @@ public class CarDao {
 
             while (resultSet.next()) {
 
+                //Adicionando os atributos
+                String carId = resultSet.getString("id");
                 String carName = resultSet.getString("name");
 
-                Car car = new Car(carName);
+                Car car = new Car(carId, carName);
 
                 cars.add(car);
 
@@ -78,6 +80,27 @@ public class CarDao {
             return Collections.emptyList();
 
         }
-
     }
+
+    public void deleteCarById(String carId) {
+        String SQL = "DELETE CAR WHERE ID = ?";
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa","sa");
+
+            System.out.println("Success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, carId);
+            preparedStatement.execute();
+
+            System.out.println("Success on delete car with Id: " + carId);
+
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("Fail in database connection");
+        }
+    }
+
 }
